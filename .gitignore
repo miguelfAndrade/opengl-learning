@@ -1,0 +1,4 @@
+.vscode
+sdl2
+*.py
+*.code-workspace
