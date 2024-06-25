@@ -6,7 +6,7 @@
 
 static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader) 
 {
-    
+    return 0;
 }
 
 
@@ -34,8 +34,12 @@ int main()
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    if(glewInit() != GLEW_OK){
-        std::cout << "GLEW ERROR!" << std::endl; 
+    GLenum err;
+    err = glewInit();
+
+    if(err != GLEW_OK){
+        std::cout << "GLEW ERROR!" << std::endl;
+        std::cout << glewGetErrorString(err) << std::endl; 
     }
 
     std::cout << glGetString(GL_VERSION) << std::endl;

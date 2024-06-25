@@ -1,5 +1,7 @@
 # Configure opengl and glfw in linux (wsl fedora)
 
+https://github.com/dhrubasaha08/WSL-Dev-Environment-C-CPP-OpenGL (WSL Ubuntu)
+
 sudo dnf install git cmake g++ python
 
 sudo dnf group install "C Development Tools and Libraries" "Development Tools"
@@ -9,8 +11,10 @@ sudo dnf install glew-devel SDL2-devel SDL2_image-devel glm-devel freetype-devel
 
 You can install the X11 dependencies and/or Wayland dependencies (In the GLFW site says that it does not need this libraries to build or run programs that use GLFW)
 
-sudo dnf install libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel - X11
-sudo dnf install wayland-devel libxkbcommon-devel wayland-protocols-devel extra-cmake-modules - Wayland
+sudo dnf install libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel - X11 (Fedora)
+sudo dnf install wayland-devel libxkbcommon-devel wayland-protocols-devel extra-cmake-modules - Wayland (Fedora)
+sudo apt-get install libxcursor-dev libxi-dev libxinerama-dev libxrandr-dev - X11 (Ubuntu)
+sudo dnf install wayland-dev libxkbcommon-dev wayland-protocols-dev extra-cmake-modules - Wayland (Ubuntu)
 
 Go to the GLFW github and clone the repository
 git clone https://github.com/glfw/glfw.git
@@ -31,7 +35,9 @@ Install glew - https://glew.sourceforge.net/install.html
 
 git clone https://github.com/nigels-com/glew.git
 
-cd glfw
+cd glew
+
+make extensions
 
 make
 
