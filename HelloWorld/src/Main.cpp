@@ -1,14 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <stdio.h>
 
 #include <iostream>
 
-static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader) 
-{
-    return 0;
-}
+#include "shader.hpp"
 
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -58,11 +59,15 @@ int main()
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float)*2, 0);
     glEnableVertexAttribArray(0);
 
+    GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glUseProgram(programID);
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
