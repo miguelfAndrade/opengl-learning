@@ -45,21 +45,29 @@ int main()
 
     std::cout << glGetString(GL_VERSION) << std::endl;
 
-    float positions[6] = {
+    float positions[8] = {
         -0.5f, -0.5f,
-         0.0f,  0.5f,
+        -0.5f,  0.5f,
+         0.5f,  0.5f,
+         0.5f, -0.5f
+    };
+
+    float positions2[6] = {
+        -0.5f, -0.5f,
+         0.5f,  0.5f,
          0.5f, -0.5f
     };
 
     unsigned int buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), positions, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float)*2, 0);
     glEnableVertexAttribArray(0);
 
     GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+    glUseProgram(programID);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -67,9 +75,8 @@ int main()
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glUseProgram(programID);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, 8);
 
         // glBegin(GL_TRIANGLES);
         // glVertex2f(-0.5f,-0.5f);
